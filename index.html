@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<>, initial-scale=1.0">
+    <title>Jump Cyber</title>
+    <link rel="shortcut icon" href="rocketicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+   <div class="gameboard">
+    <img src="car.png" class="car">
+    <img src="personrunn.gif" class="person">
+    <img src="birds.png" class="birds">
+
+   </div>
+   <script>
+   const person = document.querySelector('.person');
+   const car = document.querySelector('.car');
+   const jump = () => {
+    person.classList.add('jump');
+    setTimeout(() => {
+        person.classList.remove('jump');
+    }, 500);
+};
+
+const loop = setInterval(() => {
+    const carPosition = car.offsetLeft;
+    const personPosition = +window.getComputedStyle(person).bottom.replace('px', '');
+
+    if (carPosition <= 120 && carPosition > 0 && personPosition < 80) {
+        car.style.animation = 'none';
+        car.style.left = `${carPosition}px`;
+        person.src = 'explosion.gif';
+        person.style.widht = '75px';
+    }
+}, 10);
+
+document.addEventListener('keydown', jump);
+
+   </script>
+</body>
+</html>
